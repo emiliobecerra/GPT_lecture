@@ -1,8 +1,8 @@
 # read csv file from dataset.csv
 
-# import pandas
+import pandas
 
-# data = pandas.read_csv('dataset.csv')
+data = pandas.read_csv('dataset.csv')
 
 from dotenv import load_dotenv
 
@@ -28,5 +28,7 @@ def simple_call(prompt):
 		)
 	return completions.choices[0].message.content
 
-result = simple_call("What is the capital of the United States")	
+#lambda specifies a function
+result = dataset['reviewtext'].apply(lambda x: simple_call("How positive is the following review for a programmer: \"" + x + "\""))
+
 print(result)
