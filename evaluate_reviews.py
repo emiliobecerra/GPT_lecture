@@ -29,6 +29,7 @@ def simple_call(prompt):
 	return completions.choices[0].message.content
 
 #lambda specifies a function
-result = dataset['reviewtext'].apply(lambda x: simple_call("On a scale of 1 - 10, how positive is the following review for a programmer: \"" + x + "\" Answer in one number"))
+dataset['positive'] = dataset['reviewtext'].apply(lambda x: simple_call("On a scale of 1 - 10, how positive is the following review for a programmer: \"" + x + "\" Answer in one number"))
 
+dataset.to_csv('dataset_processed.csv')
 print(result)
