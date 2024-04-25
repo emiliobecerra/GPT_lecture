@@ -29,7 +29,11 @@ def simple_call(prompt):
 	return completions.choices[0].message.content
 
 #lambda specifies a function
-dataset['positive'] = dataset['reviewtext'].apply(lambda x: simple_call("On a scale of 1 - 10, how positive is the following review for a programmer: \"" + x + "\" Answer in one number"))
+dataset['positive'] = dataset['reviewtext'].apply(lambda x: simple_call("On a scale of 1 to 10, how positive is the following review for a programmer: \"" + x + "\" Answer in one number"))
+dataset['professional'] = dataset['reviewtext'].apply(lambda x: simple_call("On a scale of 1 t0 10, how professional is the reviewer who wrote the following review: \"" + x + "\" Answer in one number"))
+dataset['emotional'] = dataset['reviewtext'].apply(lambda x: simple_call("On a scale of 1 to 10, how emotional is the reviewer who wrote the following review: \"" + x + "\" Answer in one number"))
+dataset['sarcastic'] = dataset['reviewtext'].apply(lambda x: simple_call("On a scale of 1 to 10, how sarcastic is the reviewer who wrote the following review: \"" + x + "\" Answer in one number"))
+
 
 dataset.to_csv('dataset_processed.csv')
 print(result)
